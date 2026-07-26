@@ -36,7 +36,7 @@ def process_data():
         df_demo = df_demo[['SEQN', 'RIDAGEYR', 'RIAGENDR', 'RIDRETH1', 'INDFMPIR']].copy()
         print(f"      -> {len(df_demo)} registros carregados.")
     except Exception as e:
-        print(f"[❌] Erro ao ler DEMO_D.XPT: {e}")
+        print(f"[X] Erro ao ler DEMO_D.XPT: {e}")
         return
 
     # 2. Carregando dados do exame de visão (VIX_D.XPT)
@@ -60,7 +60,7 @@ def process_data():
         df_vix = df_vix[target_cols + available_additional].copy()
         print(f"      -> {len(df_vix)} registros carregados.")
     except Exception as e:
-        print(f"[❌] Erro ao ler VIX_D.XPT: {e}")
+        print(f"[X] Erro ao ler VIX_D.XPT: {e}")
         return
 
     # 3. Carregando dados antropométricos (BMX_D.XPT)
@@ -73,7 +73,7 @@ def process_data():
         df_bmx = df_bmx[[col for col in bmx_cols if col in df_bmx.columns]].copy()
         print(f"      -> {len(df_bmx)} registros carregados.")
     except Exception as e:
-        print(f"[❌] Erro ao ler BMX_D.XPT: {e}")
+        print(f"[X] Erro ao ler BMX_D.XPT: {e}")
         return
 
     # 4. Carregando dados de laboratório de Vitamina D (VID_D.XPT)
@@ -170,7 +170,7 @@ def process_data():
         'BMXWAIST': 'WAIST_CIRC_CM'
     }, inplace=True)
 
-    print(f"\n[✔] Consolidação Concluída!")
+    print(f"\n[OK] Consolidação Concluída!")
     print(f"      -> Total de instâncias: {len(df_consolidado)}")
     print(f"      -> Distribuição das classes de miopia:")
     dist = df_consolidado['MYOPIA_CLASS'].value_counts()
@@ -181,7 +181,7 @@ def process_data():
 
     # Salvar base limpa
     df_consolidado.to_csv(OUTPUT_FILE, index=False)
-    print(f"\n[💾] Base consolidada salva com sucesso em: '{OUTPUT_FILE}'")
+    print(f"\n[OK] Base consolidada salva com sucesso em: '{OUTPUT_FILE}'")
     print("Tudo pronto para iniciar a análise exploratória de dados (EDA) e treinamento dos modelos!")
 
 def main():
