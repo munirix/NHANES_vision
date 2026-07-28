@@ -1,7 +1,7 @@
 import os
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-RAW_DIR = os.path.join(BASE_DIR, "data", "NHANES")
+RAW_DIR = os.path.join(BASE_DIR, "data", "NHANES", "2005-2006")
 OUTPUT_FILE = os.path.join(BASE_DIR, "data", "data_cleaned", "nhanes_myopia_cleaned.csv")
 
 DEMO_COLS = ['SEQN', 'RIDAGEYR', 'RIAGENDR', 'RIDRETH1', 'INDFMPIR']

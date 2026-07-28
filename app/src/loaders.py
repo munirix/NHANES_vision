@@ -7,14 +7,14 @@ def _read_sas(filename):
     return pd.read_sas(path, format="xport")
 
 def load_demographic_data():
-    print("[1/4] Carregando dados demográficos (DEMO_D.XPT)...")
+    print("[1/4] Carregando dados demográficos "+config.RAW_DIR[-9:]+" (DEMO_D.XPT)...")
     df = _read_sas("DEMO_D.XPT")
     df = df[config.DEMO_COLS].copy()
     print(f"       -> {len(df)} registros carregados.")
     return df
 
 def load_vision_data():
-    print("[2/4] Carregando dados do exame de visão (VIX_D.XPT)...")
+    print("[2/4] Carregando dados do exame de visão "+config.RAW_DIR[-9:]+" (VIX_D.XPT)...")
     df = _read_sas("VIX_D.XPT")
 
     available_optional = [col for col in config.VIX_OPTIONAL_COLS if col in df.columns]
@@ -24,7 +24,7 @@ def load_vision_data():
     return df
 
 def load_anthropometric_data():
-    print("[3/4] Carregando dados antropométricos (BMX_D.XPT)...")
+    print("[3/4] Carregando dados antropométricos "+config.RAW_DIR[-9:]+" (BMX_D.XPT)...")
     df = _read_sas("BMX_D.XPT")
     selected_cols = [col for col in config.BMX_COLS if col in df.columns]
     df = df[selected_cols].copy()
@@ -32,7 +32,7 @@ def load_anthropometric_data():
     return df
 
 def load_vitamin_d_data():
-    print("[4/4] Carregando dados de laboratório de Vitamina D (VID_D.XPT)...")
+    print("[4/4] Carregando dados de laboratório de Vitamina D "+config.RAW_DIR[-9:]+" (VID_D.XPT)...")
     try:
         df_raw = _read_sas("VID_D.XPT")
     except Exception as e:
